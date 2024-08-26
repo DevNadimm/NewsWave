@@ -13,6 +13,7 @@ class HomeScreen extends StatelessWidget {
           'NewsWave',
           style: Theme.of(context).textTheme.titleLarge,
         ),
+        centerTitle: true,
         surfaceTintColor: Colors.transparent,
       ),
       body: SingleChildScrollView(
