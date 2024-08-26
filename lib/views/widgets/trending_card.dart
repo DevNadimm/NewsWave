@@ -78,7 +78,7 @@ class TrendingCard extends StatelessWidget {
                 backgroundImage: NetworkImage(authorImageUrl),
               ),
               const SizedBox(
-                width: 05,
+                width: 08,
               ),
               Text(
                 authorName,

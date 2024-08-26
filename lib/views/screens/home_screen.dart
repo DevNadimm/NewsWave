@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:news_wave/views/widgets/news_tile.dart';
 import 'package:news_wave/views/widgets/trending_card.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -64,6 +65,35 @@ class HomeScreen extends StatelessWidget {
                 ),
               ],
             ),
+          ),
+          const SizedBox(
+            height: 15,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "News For You",
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
+                Text(
+                  "See All",
+                  style: Theme.of(context).textTheme.titleSmall,
+                ),
+              ],
+            ),
+          ),
+          const NewsTile(
+            imageUrl:
+                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQw4Kpsps4TbFxgrOSqffJGCrdv38Mcspx0AA&s',
+            headline:
+                'Trump’s personal attacks aren’t just who he is. They’re his strategy',
+            authorName: 'BBC News',
+            authorImageUrl:
+                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZrRNR9_sMkmiN5g2UN_f9kKx8H4Z9JDC5Pg&s',
+            relativeTime: '2 days ago',
           ),
         ],
       ),
