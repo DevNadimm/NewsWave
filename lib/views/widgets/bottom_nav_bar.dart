@@ -8,52 +8,51 @@ class BottomNavBar extends StatefulWidget {
   const BottomNavBar({super.key});
 
   @override
-  State<BottomNavBar> createState() => _BottomNavBarState();
+  _BottomNavBarState createState() => _BottomNavBarState();
 }
 
 class _BottomNavBarState extends State<BottomNavBar> {
-  final List<Widget> screens = [
+  int _selectedIndex = 0;
+
+  final List<Widget> _screens = [
     const HomeScreen(),
     const BookScreen(),
     const SettingScreen(),
   ];
 
-  int currentIndex = 0;
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBody: true,
       body: IndexedStack(
-        index: currentIndex,
-        children: screens,
+        index: _selectedIndex,
+        children: _screens,
       ),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: bgColor,
-        currentIndex: currentIndex,
-        onTap: (index) {
-          setState(() {
-            currentIndex = index;
-          });
-        },
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Icon(Icons.home_rounded),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.book),
-            label: 'Books',
+            icon: Icon(Icons.bookmark),
+            label: 'Bookmark',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
-            label: 'Settings',
+            label: 'Setting',
           ),
         ],
+        currentIndex: _selectedIndex,
         selectedItemColor: accentColor,
         unselectedItemColor: subTextColor,
-        showUnselectedLabels: true,
-        showSelectedLabels: true,
+        onTap: _onItemTapped,
       ),
     );
   }
