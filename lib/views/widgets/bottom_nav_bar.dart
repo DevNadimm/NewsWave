@@ -28,38 +28,32 @@ class _BottomNavBarState extends State<BottomNavBar> {
         index: currentIndex,
         children: screens,
       ),
-      bottomNavigationBar: Stack(
-        alignment: Alignment.bottomCenter,
-        children: [
-          BottomNavigationBar(
-            backgroundColor: bgColor,
-            currentIndex: currentIndex,
-            onTap: (index) {
-              setState(() {
-                currentIndex = index;
-              });
-            },
-            items: const [
-              BottomNavigationBarItem(
-                icon: Icon(Icons.home),
-                label: 'Home',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.book),
-                label: 'Books',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.settings),
-                label: 'Settings',
-              ),
-            ],
-            selectedItemColor: accentColor,
-            unselectedItemColor: subTextColor,
-            showUnselectedLabels: true,
-            showSelectedLabels: true,
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: bgColor,
+        currentIndex: currentIndex,
+        onTap: (index) {
+          setState(() {
+            currentIndex = index;
+          });
+        },
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
           ),
-
+          BottomNavigationBarItem(
+            icon: Icon(Icons.book),
+            label: 'Books',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: 'Settings',
+          ),
         ],
+        selectedItemColor: accentColor,
+        unselectedItemColor: subTextColor,
+        showUnselectedLabels: true,
+        showSelectedLabels: true,
       ),
     );
   }
