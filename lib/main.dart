@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_wave/views/screens/home_screen.dart';
+import 'package:news_wave/theme.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,12 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        scaffoldBackgroundColor: Colors.white,
-        appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.white,
-        ),
-      ),
+      theme: appTheme(),
       debugShowCheckedModeBanner: false,
       title: 'NewsWave',
       home: const HomeScreen(),
