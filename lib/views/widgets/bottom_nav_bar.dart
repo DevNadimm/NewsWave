@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_wave/colors.dart';
-import 'package:news_wave/views/screens/book_screen.dart';
+import 'package:news_wave/views/screens/search_screen.dart';
 import 'package:news_wave/views/screens/home_screen.dart';
 import 'package:news_wave/views/screens/setting_screen.dart';
 
@@ -16,7 +16,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
 
   final List<Widget> _screens = [
     const HomeScreen(),
-    const BookScreen(),
+    const SearchScreen(),
     const SettingScreen(),
   ];
 
@@ -41,8 +41,8 @@ class _BottomNavBarState extends State<BottomNavBar> {
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.bookmark),
-            label: 'Bookmark',
+            icon: Icon(Icons.search_rounded),
+            label: 'Search',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
