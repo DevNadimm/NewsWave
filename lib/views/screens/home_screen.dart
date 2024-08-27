@@ -87,7 +87,8 @@ class HomeScreen extends StatelessWidget {
               padding: const EdgeInsets.only(
                 left: 10,
                 right: 10,
-                top: 10,
+                top: 15,
+                bottom: 5
               ),
               child: Image.asset('assets/logo/barrier.png'),
             ),

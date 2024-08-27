@@ -48,7 +48,7 @@ class SearchScreen extends StatelessWidget {
                   ),
                   style: Theme.of(context).textTheme.titleSmall,
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 20),
                 Text(
                   "Trending Categories",
                   style: Theme.of(context).textTheme.titleMedium,
@@ -60,7 +60,7 @@ class SearchScreen extends StatelessWidget {
                   itemCount: categoryMap.length,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
-                    childAspectRatio: 1.4,
+                    childAspectRatio: 2,
                     crossAxisSpacing: 10,
                     mainAxisSpacing: 10,
                   ),
