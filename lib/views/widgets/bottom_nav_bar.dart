@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:news_wave/colors.dart';
 import 'package:news_wave/views/screens/search_screen.dart';
@@ -37,11 +38,11 @@ class _BottomNavBarState extends State<BottomNavBar> {
         backgroundColor: bgColor,
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home_rounded),
+            icon: Icon(CupertinoIcons.home,),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.search_rounded),
+            icon: Icon(CupertinoIcons.search,),
             label: 'Search',
           ),
           BottomNavigationBarItem(
