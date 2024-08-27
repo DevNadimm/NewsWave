@@ -14,10 +14,6 @@ class SearchScreen extends StatelessWidget {
           "assets/logo/news_wave_title.png",
           width: 150,
         ),
-        // Text(
-        //   'NewsWave',
-        //   style: Theme.of(context).textTheme.titleLarge,
-        // ),
         centerTitle: false,
         surfaceTintColor: Colors.transparent,
       ),
@@ -41,7 +37,7 @@ class SearchScreen extends StatelessWidget {
                   placeholder: "Search...",
                   placeholderStyle: Theme.of(context).textTheme.titleSmall,
                   backgroundColor: secondaryColor,
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(12),
                   prefixIcon: const Icon(
                     CupertinoIcons.search,
                     color: subTextColor,
@@ -76,7 +72,7 @@ class SearchScreen extends StatelessWidget {
                       children: [
                         Container(
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
+                            borderRadius: BorderRadius.circular(12),
                             image: DecorationImage(
                               image: AssetImage(category['imagePath']),
                               fit: BoxFit.cover,
@@ -86,7 +82,7 @@ class SearchScreen extends StatelessWidget {
                         Container(
                           decoration: BoxDecoration(
                             color: Colors.black.withOpacity(0.5),
-                            borderRadius: BorderRadius.circular(10),
+                            borderRadius: BorderRadius.circular(12),
                           ),
                         ),
                         Align(
