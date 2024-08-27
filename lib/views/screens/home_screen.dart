@@ -9,11 +9,15 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'NewsWave',
-          style: Theme.of(context).textTheme.titleLarge,
+        title: Image.asset(
+          "assets/logo/news_wave_title.png",
+          width: 150,
         ),
-        centerTitle: true,
+        // Text(
+        //   'NewsWave',
+        //   style: Theme.of(context).textTheme.titleLarge,
+        // ),
+        centerTitle: false,
         surfaceTintColor: Colors.transparent,
       ),
       body: SingleChildScrollView(
