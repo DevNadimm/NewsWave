@@ -74,8 +74,9 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(
-              height: 15,
+            Padding(
+              padding: const EdgeInsets.only(left: 10, right: 10, top: 10,),
+              child: Image.asset('assets/logo/barrier.png'),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
