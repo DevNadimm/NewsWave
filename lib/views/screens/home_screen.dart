@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:news_wave/colors.dart';
 import 'package:news_wave/views/widgets/news_tile.dart';
 import 'package:news_wave/views/widgets/trending_card.dart';
 
@@ -35,9 +36,17 @@ class HomeScreen extends StatelessWidget {
                     "Hottest News",
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
-                  Text(
-                    "See All",
-                    style: Theme.of(context).textTheme.titleSmall,
+                  Row(
+                    children: [
+                      Text(
+                        "See More",
+                        style: Theme.of(context).textTheme.titleSmall,
+                      ),
+                      const Icon(
+                        Icons.navigate_next_rounded,
+                        color: subTextColor,
+                      ),
+                    ],
                   ),
                 ],
               ),
@@ -75,7 +84,11 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 10, right: 10, top: 10,),
+              padding: const EdgeInsets.only(
+                left: 10,
+                right: 10,
+                top: 10,
+              ),
               child: Image.asset('assets/logo/barrier.png'),
             ),
             Padding(
@@ -87,9 +100,17 @@ class HomeScreen extends StatelessWidget {
                     "News For You",
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
-                  Text(
-                    "See All",
-                    style: Theme.of(context).textTheme.titleSmall,
+                  Row(
+                    children: [
+                      Text(
+                        "See More",
+                        style: Theme.of(context).textTheme.titleSmall,
+                      ),
+                      const Icon(
+                        Icons.navigate_next_rounded,
+                        color: subTextColor,
+                      ),
+                    ],
                   ),
                 ],
               ),
