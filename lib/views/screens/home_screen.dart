@@ -66,8 +66,8 @@ class HomeScreen extends StatelessWidget {
                     authorName: 'Nadim Chowdhury',
                     authorImageUrl:
                         'https://avatars.githubusercontent.com/u/161572904?v=4',
-                    relativeTime: '2 days ago',
-                    trendingRank: 'Trending no 1',
+                    relativeTime: '2 Days Ago',
+                    trendingRank: '🔥 Trending No.1',
                   ),
                   TrendingCard(
                     imageUrl:
@@ -77,19 +77,15 @@ class HomeScreen extends StatelessWidget {
                     authorName: 'BBC News',
                     authorImageUrl:
                         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZrRNR9_sMkmiN5g2UN_f9kKx8H4Z9JDC5Pg&s',
-                    relativeTime: '3 days ago',
-                    trendingRank: 'Trending no 2',
+                    relativeTime: '3 Days Ago',
+                    trendingRank: '🔥 Trending No.2',
                   ),
                 ],
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(
-                left: 10,
-                right: 10,
-                top: 15,
-                bottom: 5
-              ),
+                  left: 10, right: 10, top: 15, bottom: 5),
               child: Image.asset('assets/logo/barrier.png'),
             ),
             Padding(
@@ -123,7 +119,7 @@ class HomeScreen extends StatelessWidget {
               authorName: 'BBC News',
               authorImageUrl:
                   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZrRNR9_sMkmiN5g2UN_f9kKx8H4Z9JDC5Pg&s',
-              relativeTime: '2 days ago',
+              relativeTime: '2 Days Ago',
             ),
             const NewsTile(
               imageUrl:
@@ -133,7 +129,7 @@ class HomeScreen extends StatelessWidget {
               authorName: 'BBC News',
               authorImageUrl:
                   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZrRNR9_sMkmiN5g2UN_f9kKx8H4Z9JDC5Pg&s',
-              relativeTime: '2 days ago',
+              relativeTime: '2 Days Ago',
             ),
             const NewsTile(
               imageUrl:
@@ -143,7 +139,7 @@ class HomeScreen extends StatelessWidget {
               authorName: 'BBC News',
               authorImageUrl:
                   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZrRNR9_sMkmiN5g2UN_f9kKx8H4Z9JDC5Pg&s',
-              relativeTime: '2 days ago',
+              relativeTime: '2 Days Ago',
             ),
           ],
         ),
