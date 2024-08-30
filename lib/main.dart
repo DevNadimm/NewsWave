@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_wave/theme.dart';
-import 'package:news_wave/views/widgets/bottom_nav_bar.dart';
+import 'package:news_wave/views/screens/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: appTheme(),
       debugShowCheckedModeBanner: false,
       title: 'NewsWave',
-      home:  const BottomNavBar(),
+      home:  const SplashScreen(),
     );
   }
 }
