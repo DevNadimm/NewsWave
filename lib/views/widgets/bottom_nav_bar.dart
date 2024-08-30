@@ -38,16 +38,22 @@ class _BottomNavBarState extends State<BottomNavBar> {
         backgroundColor: bgColor,
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(CupertinoIcons.home,),
+            icon: Icon(
+              CupertinoIcons.home,
+            ),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(CupertinoIcons.search,),
+            icon: Icon(
+              CupertinoIcons.search,
+            ),
             label: 'Search',
           ),
           BottomNavigationBarItem(
-            icon: Icon(CupertinoIcons.news,),
-            label: 'Articles',
+            icon: Icon(
+              CupertinoIcons.news,
+            ),
+            label: 'Sources',
           ),
         ],
         currentIndex: _selectedIndex,
