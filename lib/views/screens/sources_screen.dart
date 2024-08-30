@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class ArticlesScreen extends StatelessWidget {
-  const ArticlesScreen({super.key});
+class SourcesScreen extends StatelessWidget {
+  const SourcesScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class ArticlesScreen extends StatelessWidget {
         surfaceTintColor: Colors.transparent,
       ),
       body: const Center(
-        child: Text("Articles"),
+        child: Text("Sources"),
       ),
     );
   }

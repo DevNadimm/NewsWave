@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:news_wave/colors.dart';
 import 'package:news_wave/views/screens/search_screen.dart';
 import 'package:news_wave/views/screens/home_screen.dart';
-import 'package:news_wave/views/screens/articles_screen.dart';
+import 'package:news_wave/views/screens/sources_screen.dart';
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({super.key});
@@ -18,7 +18,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
   final List<Widget> _screens = [
     const HomeScreen(),
     const SearchScreen(),
-    const ArticlesScreen(),
+    const SourcesScreen(),
   ];
 
   void _onItemTapped(int index) {
