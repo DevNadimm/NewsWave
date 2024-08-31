@@ -1,72 +1,174 @@
+import 'dart:convert';
+
 class NewsModel {
-  final Source source;
-  final String author;
-  final String title;
-  final String description;
-  final String url;
-  final String urlToImage;
-  final DateTime publishedAt;
-  final String content;
+  String status;
+  int totalResults;
+  List<Article> articles;
 
   NewsModel({
+    required this.status,
+    required this.totalResults,
+    required this.articles,
+  });
+
+  NewsModel copyWith({
+    String? status,
+    int? totalResults,
+    List<Article>? articles,
+  }) =>
+      NewsModel(
+        status: status ?? this.status,
+        totalResults: totalResults ?? this.totalResults,
+        articles: articles ?? this.articles,
+      );
+
+  factory NewsModel.fromRawJson(String str) => NewsModel.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory NewsModel.fromJson(Map<String, dynamic> json) => NewsModel(
+    status: json["status"] ?? '',
+    totalResults: json["totalResults"] ?? 0,
+    articles: json["articles"] == null
+        ? []
+        : List<Article>.from(json["articles"].map((x) => Article.fromJson(x))),
+  );
+
+  Map<String, dynamic> toJson() => {
+    "status": status,
+    "totalResults": totalResults,
+    "articles": List<dynamic>.from(articles.map((x) => x.toJson())),
+  };
+}
+
+class Article {
+  Source source;
+  String author;
+  String title;
+  String? description;
+  String url;
+  String? urlToImage;
+  DateTime publishedAt;
+  String? content;
+
+  Article({
     required this.source,
     required this.author,
     required this.title,
-    required this.description,
+    this.description,
     required this.url,
-    required this.urlToImage,
+    this.urlToImage,
     required this.publishedAt,
-    required this.content,
+    this.content,
   });
 
-  factory NewsModel.fromJson(Map<String, dynamic> json) {
-    return NewsModel(
-      source: Source.fromJson(json['source']),
-      author: json['author'] ?? 'Unknown',
-      title: json['title'] ?? '',
-      description: json['description'] ?? '',
-      url: json['url'] ?? '',
-      urlToImage: json['urlToImage'] ??
-          'https://codup.co/wp-content/uploads/2021/06/How-To-Fix-Failed-to-load-resource-net-ERR_BLOCKED_BY_CLIENT-Error.png-1.webp',
-      publishedAt: DateTime.parse(json['publishedAt']),
-      content: json['content'] ?? '',
-    );
-  }
+  Article copyWith({
+    Source? source,
+    String? author,
+    String? title,
+    String? description,
+    String? url,
+    String? urlToImage,
+    DateTime? publishedAt,
+    String? content,
+  }) =>
+      Article(
+        source: source ?? this.source,
+        author: author ?? this.author,
+        title: title ?? this.title,
+        description: description ?? this.description,
+        url: url ?? this.url,
+        urlToImage: urlToImage ?? this.urlToImage,
+        publishedAt: publishedAt ?? this.publishedAt,
+        content: content ?? this.content,
+      );
 
-  Map<String, dynamic> toJson() {
-    return {
-      'source': source.toJson(),
-      'author': author,
-      'title': title,
-      'description': description,
-      'url': url,
-      'urlToImage': urlToImage,
-      'publishedAt': publishedAt.toIso8601String(),
-      'content': content,
-    };
-  }
+  factory Article.fromRawJson(String str) => Article.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory Article.fromJson(Map<String, dynamic> json) => Article(
+    source: Source.fromJson(json["source"]),
+    author: json["author"] ?? '',
+    title: json["title"] ?? '',
+    description: json["description"],
+    url: json["url"] ?? '',
+    urlToImage: json["urlToImage"],
+    publishedAt: json["publishedAt"] != null
+        ? DateTime.parse(json["publishedAt"])
+        : DateTime.now(),
+    content: json["content"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "source": source.toJson(),
+    "author": author,
+    "title": title,
+    "description": description,
+    "url": url,
+    "urlToImage": urlToImage,
+    "publishedAt": publishedAt.toIso8601String(),
+    "content": content,
+  };
 }
 
 class Source {
-  final String id;
-  final String name;
+  Id id;
+  Name name;
 
   Source({
     required this.id,
     required this.name,
   });
 
-  factory Source.fromJson(Map<String, dynamic> json) {
-    return Source(
-      id: json['id'] ?? '',
-      name: json['name'] ?? '',
-    );
-  }
+  Source copyWith({
+    Id? id,
+    Name? name,
+  }) =>
+      Source(
+        id: id ?? this.id,
+        name: name ?? this.name,
+      );
 
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'name': name,
-    };
+  factory Source.fromRawJson(String str) => Source.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory Source.fromJson(Map<String, dynamic> json) => Source(
+    id: idValues.map[json["id"]] ?? Id.GOOGLE_NEWS,
+    name: nameValues.map[json["name"]] ?? Name.GOOGLE_NEWS,
+  );
+
+  Map<String, dynamic> toJson() => {
+    "id": idValues.reverse[id],
+    "name": nameValues.reverse[name],
+  };
+}
+
+enum Id {
+  GOOGLE_NEWS
+}
+
+final idValues = EnumValues({
+  "google-news": Id.GOOGLE_NEWS
+});
+
+enum Name {
+  GOOGLE_NEWS
+}
+
+final nameValues = EnumValues({
+  "Google News": Name.GOOGLE_NEWS
+});
+
+class EnumValues<T> {
+  Map<String, T> map;
+  late Map<T, String> reverseMap;
+
+  EnumValues(this.map);
+
+  Map<T, String> get reverse {
+    reverseMap = map.map((k, v) => MapEntry(v, k));
+    return reverseMap;
   }
 }
