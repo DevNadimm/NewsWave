@@ -14,10 +14,6 @@ class HomeScreen extends StatelessWidget {
           "assets/logo/news_wave_title.png",
           width: 150,
         ),
-        // Text(
-        //   'NewsWave',
-        //   style: Theme.of(context).textTheme.titleLarge,
-        // ),
         centerTitle: false,
         surfaceTintColor: Colors.transparent,
       ),
@@ -27,30 +23,7 @@ class HomeScreen extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Hottest News",
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
-                  Row(
-                    children: [
-                      Text(
-                        "See More",
-                        style: Theme.of(context).textTheme.titleSmall,
-                      ),
-                      const Icon(
-                        Icons.navigate_next_rounded,
-                        color: subTextColor,
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
+            _buildHeadingRow(context, "Hottest News", () {}),
             const SizedBox(
               height: 10,
             ),
@@ -88,30 +61,7 @@ class HomeScreen extends StatelessWidget {
                   left: 10, right: 10, top: 15, bottom: 5),
               child: Image.asset('assets/logo/barrier.png'),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "News For You",
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
-                  Row(
-                    children: [
-                      Text(
-                        "See More",
-                        style: Theme.of(context).textTheme.titleSmall,
-                      ),
-                      const Icon(
-                        Icons.navigate_next_rounded,
-                        color: subTextColor,
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
+            _buildHeadingRow(context, "News For You", () {}),
             const NewsTile(
               imageUrl:
                   'https://api.time.com/wp-content/uploads/2024/08/GettyImages-2165952554.jpg?quality=85&w=1920',
@@ -143,6 +93,37 @@ class HomeScreen extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildHeadingRow(
+      BuildContext context, String header, VoidCallback onTap) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            header,
+            style: Theme.of(context).textTheme.titleMedium,
+          ),
+          GestureDetector(
+            onTap: onTap,
+            child: Row(
+              children: [
+                Text(
+                  "See More",
+                  style: Theme.of(context).textTheme.titleSmall,
+                ),
+                const Icon(
+                  Icons.navigate_next_rounded,
+                  color: subTextColor,
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
