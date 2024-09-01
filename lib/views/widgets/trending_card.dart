@@ -26,6 +26,15 @@ class TrendingCard extends StatelessWidget {
             itemCount: 10,
             itemBuilder: (context, index) {
               final article = newsList[index];
+              final imageUrl = article.urlToImage ??
+                  'https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg';
+              final headline = article.title;
+              final authorName =
+                  article.author.isNotEmpty ? article.author : 'Unknown';
+              final authorInitial =
+                  article.author.isNotEmpty ? article.author[0] : 'U';
+              final formattedDate = _formatDate(article.publishedAt);
+              final trendingRank = index + 1;
 
               return Container(
                 margin: const EdgeInsets.symmetric(horizontal: 10),
@@ -36,6 +45,7 @@ class TrendingCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
                       height: 180,
@@ -43,10 +53,7 @@ class TrendingCard extends StatelessWidget {
                         color: bgColor,
                         borderRadius: BorderRadius.circular(10),
                         image: DecorationImage(
-                          image: NetworkImage(
-                            article.urlToImage ??
-                                'https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg',
-                          ),
+                          image: NetworkImage(imageUrl),
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -56,18 +63,18 @@ class TrendingCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Trending Rank ${index + 1}',
+                          'Trending Rank $trendingRank',
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                         Text(
-                          _formatDate(article.publishedAt),
+                          formattedDate,
                           style: Theme.of(context).textTheme.bodyMedium,
                         ),
                       ],
                     ),
                     const SizedBox(height: 10),
                     Text(
-                      article.title,
+                      headline,
                       style: Theme.of(context).textTheme.titleMedium,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
@@ -80,23 +87,23 @@ class TrendingCard extends StatelessWidget {
                           backgroundColor: accentColor,
                           child: Center(
                             child: Text(
-                              article.author.isNotEmpty ? article.author[0] : 'U',
-                              style: const TextStyle(color: bgColor, fontSize: 14),
+                              authorInitial,
+                              style: const TextStyle(
+                                  color: bgColor,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold),
                             ),
                           ),
                         ),
-
                         const SizedBox(width: 8),
                         Expanded(
                           child: Text(
+                            authorName,
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
-                            article.author.isNotEmpty
-                                ? article.author
-                                : 'Unknown',
                             style: Theme.of(context).textTheme.titleSmall,
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ],

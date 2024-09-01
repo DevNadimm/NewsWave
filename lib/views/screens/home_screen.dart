@@ -15,11 +15,13 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final NewsController newsController = NewsController();
   late final Future<NewsModel> trendingNews;
+  late final Future<NewsModel> newsForYou;
 
 
   @override
   void initState() {
     trendingNews = newsController.getTrendingNews();
+    newsForYou = newsController.getNewsForYou();
     super.initState();
   }
 
@@ -56,14 +58,8 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Image.asset('assets/logo/barrier.png'),
             ),
             _buildHeadingRow(context, "News For You", () {}),
-            const NewsTile(
-              imageUrl:
-              'https://api.time.com/wp-content/uploads/2024/08/GettyImages-2165952554.jpg?quality=85&w=1920',
-              headline: 'How Bangladesh Can Become a True Democracy',
-              authorName: 'BBC News',
-              authorImageUrl:
-              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZrRNR9_sMkmiN5g2UN_f9kKx8H4Z9JDC5Pg&s',
-              relativeTime: '2 Days Ago',
+            NewsTile(
+              newsForYou: newsForYou,
             ),
           ],
         ),

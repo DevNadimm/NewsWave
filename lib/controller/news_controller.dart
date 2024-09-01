@@ -26,6 +26,26 @@ class NewsController {
     }
   }
 
+  Future<NewsModel> getNewsForYou() async {
+    final oneWeekAgo = DateTime.now().subtract(const Duration(days: 7));
+    final formattedDate = _formatDate(oneWeekAgo);
+    String url =
+        "https://newsapi.org/v2/everything?q=bangladesh&from=$formattedDate&sortBy=publishedAt&apiKey=beb03bbb96e64abc8aa61ff7c809454f";
+
+    try {
+      final response = await http.get(Uri.parse(url));
+      if (response.statusCode == 200) {
+        final jsonResponse = jsonDecode(response.body);
+        final news = NewsModel.fromJson(jsonResponse);
+        return news;
+      } else {
+        throw Exception("Failed to load news: ${response.statusCode}");
+      }
+    } catch (e) {
+      throw Exception("An error occurred when fetching for you news: $e");
+    }
+  }
+
   String _formatDate(DateTime date) {
     return "${date.year}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}";
   }

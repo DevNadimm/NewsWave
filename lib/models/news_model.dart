@@ -11,18 +11,8 @@ class NewsModel {
     required this.articles,
   });
 
-  NewsModel copyWith({
-    String? status,
-    int? totalResults,
-    List<Article>? articles,
-  }) =>
-      NewsModel(
-        status: status ?? this.status,
-        totalResults: totalResults ?? this.totalResults,
-        articles: articles ?? this.articles,
-      );
-
-  factory NewsModel.fromRawJson(String str) => NewsModel.fromJson(json.decode(str));
+  factory NewsModel.fromRawJson(String str) =>
+      NewsModel.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
@@ -31,7 +21,8 @@ class NewsModel {
     totalResults: json["totalResults"] ?? 0,
     articles: json["articles"] == null
         ? []
-        : List<Article>.from(json["articles"].map((x) => Article.fromJson(x))),
+        : List<Article>.from(
+        json["articles"].map((x) => Article.fromJson(x))),
   );
 
   Map<String, dynamic> toJson() => {
@@ -42,7 +33,7 @@ class NewsModel {
 }
 
 class Article {
-  Source source;
+  String source;
   String author;
   String title;
   String? description;
@@ -62,33 +53,13 @@ class Article {
     this.content,
   });
 
-  Article copyWith({
-    Source? source,
-    String? author,
-    String? title,
-    String? description,
-    String? url,
-    String? urlToImage,
-    DateTime? publishedAt,
-    String? content,
-  }) =>
-      Article(
-        source: source ?? this.source,
-        author: author ?? this.author,
-        title: title ?? this.title,
-        description: description ?? this.description,
-        url: url ?? this.url,
-        urlToImage: urlToImage ?? this.urlToImage,
-        publishedAt: publishedAt ?? this.publishedAt,
-        content: content ?? this.content,
-      );
-
-  factory Article.fromRawJson(String str) => Article.fromJson(json.decode(str));
+  factory Article.fromRawJson(String str) =>
+      Article.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
   factory Article.fromJson(Map<String, dynamic> json) => Article(
-    source: Source.fromJson(json["source"]),
+    source: json["source"]["name"] ?? '',
     author: json["author"] ?? '',
     title: json["title"] ?? '',
     description: json["description"],
@@ -101,7 +72,7 @@ class Article {
   );
 
   Map<String, dynamic> toJson() => {
-    "source": source.toJson(),
+    "source": source,
     "author": author,
     "title": title,
     "description": description,
@@ -110,65 +81,4 @@ class Article {
     "publishedAt": publishedAt.toIso8601String(),
     "content": content,
   };
-}
-
-class Source {
-  Id id;
-  Name name;
-
-  Source({
-    required this.id,
-    required this.name,
-  });
-
-  Source copyWith({
-    Id? id,
-    Name? name,
-  }) =>
-      Source(
-        id: id ?? this.id,
-        name: name ?? this.name,
-      );
-
-  factory Source.fromRawJson(String str) => Source.fromJson(json.decode(str));
-
-  String toRawJson() => json.encode(toJson());
-
-  factory Source.fromJson(Map<String, dynamic> json) => Source(
-    id: idValues.map[json["id"]] ?? Id.GOOGLE_NEWS,
-    name: nameValues.map[json["name"]] ?? Name.GOOGLE_NEWS,
-  );
-
-  Map<String, dynamic> toJson() => {
-    "id": idValues.reverse[id],
-    "name": nameValues.reverse[name],
-  };
-}
-
-enum Id {
-  GOOGLE_NEWS
-}
-
-final idValues = EnumValues({
-  "google-news": Id.GOOGLE_NEWS
-});
-
-enum Name {
-  GOOGLE_NEWS
-}
-
-final nameValues = EnumValues({
-  "Google News": Name.GOOGLE_NEWS
-});
-
-class EnumValues<T> {
-  Map<String, T> map;
-  late Map<T, String> reverseMap;
-
-  EnumValues(this.map);
-
-  Map<T, String> get reverse {
-    reverseMap = map.map((k, v) => MapEntry(v, k));
-    return reverseMap;
-  }
 }
