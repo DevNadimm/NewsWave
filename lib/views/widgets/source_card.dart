@@ -63,7 +63,7 @@ class SourceCard extends StatelessWidget {
                   itemBuilder: (context, index) {
                     final article = newsList[index];
                     final imgUrl = article.urlToImage ??
-                        "https://t4.ftcdn.net/jpg/04/73/25/49/360_F_473254957_bxG9yf4ly7OBO5I0O5KABlN930GwaMQz.jpg";
+                        "https://i.ibb.co/nwgFFQf/20240901-180827.jpg";
                     final headline = article.title;
                     final formattedDate = _formatDate(article.publishedAt);
 
