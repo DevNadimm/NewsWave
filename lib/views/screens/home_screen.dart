@@ -1,7 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:news_wave/colors.dart';
 import 'package:news_wave/controller/news_controller.dart';
 import 'package:news_wave/models/news_model.dart';
+import 'package:news_wave/views/screens/see_more_screen.dart';
 import 'package:news_wave/views/widgets/news_tile.dart';
 import 'package:news_wave/views/widgets/trending_card.dart';
 
@@ -16,7 +18,6 @@ class _HomeScreenState extends State<HomeScreen> {
   final NewsController newsController = NewsController();
   late final Future<NewsModel> trendingNews;
   late final Future<NewsModel> newsForYou;
-
 
   @override
   void initState() {
@@ -42,7 +43,21 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(
               height: 10,
             ),
-            _buildHeadingRow(context, "Hottest News", () {}),
+            _buildHeadingRow(
+              context,
+              "Hottest News",
+              () {
+                Navigator.push(
+                  context,
+                  CupertinoPageRoute(
+                    builder: (_) => SeeMoreScreen(
+                      title: "Hottest News",
+                      futureNews: trendingNews,
+                    ),
+                  ),
+                );
+              },
+            ),
             const SizedBox(
               height: 10,
             ),
@@ -57,7 +72,21 @@ class _HomeScreenState extends State<HomeScreen> {
                   left: 10, right: 10, top: 15, bottom: 5),
               child: Image.asset('assets/logo/barrier.png'),
             ),
-            _buildHeadingRow(context, "News For You", () {}),
+            _buildHeadingRow(
+              context,
+              "News For You",
+              () {
+                Navigator.push(
+                  context,
+                  CupertinoPageRoute(
+                    builder: (_) => SeeMoreScreen(
+                      title: "News For You",
+                      futureNews: newsForYou,
+                    ),
+                  ),
+                );
+              },
+            ),
             NewsTile(
               itemCount: 10,
               futureNews: newsForYou,
@@ -69,8 +98,8 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _buildHeadingRow(BuildContext context, String header,
-      VoidCallback onTap) {
+  Widget _buildHeadingRow(
+      BuildContext context, String header, VoidCallback onTap) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Row(
@@ -78,10 +107,7 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           Text(
             header,
-            style: Theme
-                .of(context)
-                .textTheme
-                .titleMedium,
+            style: Theme.of(context).textTheme.titleMedium,
           ),
           GestureDetector(
             onTap: onTap,
@@ -89,10 +115,7 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 Text(
                   "See More",
-                  style: Theme
-                      .of(context)
-                      .textTheme
-                      .titleSmall,
+                  style: Theme.of(context).textTheme.titleSmall,
                 ),
                 const Icon(
                   Icons.navigate_next_rounded,
