@@ -1,8 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:news_wave/controller/news_controller.dart';
+import 'package:news_wave/models/news_model.dart';
 import 'package:news_wave/views/widgets/source_card.dart';
 
-class SourcesScreen extends StatelessWidget {
+class SourcesScreen extends StatefulWidget {
   const SourcesScreen({super.key});
+
+  @override
+  State<SourcesScreen> createState() => _SourcesScreenState();
+}
+
+class _SourcesScreenState extends State<SourcesScreen> {
+  NewsController newsController = NewsController();
+  late Future<NewsModel> sourcesNewsForBBC;
+  late Future<NewsModel> sourcesNewsForAlJazeera;
+  late Future<NewsModel> sourcesNewsForCNN;
+  late Future<NewsModel> sourcesNewsForFoxNews;
+  late Future<NewsModel> sourcesNewsForHuffPost;
+
+  @override
+  void initState() {
+    sourcesNewsForBBC = newsController.getSourceNews("bbc");
+    sourcesNewsForAlJazeera = newsController.getSourceNews("aljazeera");
+    sourcesNewsForCNN = newsController.getSourceNews("cnn");
+    sourcesNewsForFoxNews = newsController.getSourceNews("foxnews");
+    sourcesNewsForHuffPost = newsController.getSourceNews("huffpost");
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -15,31 +39,38 @@ class SourcesScreen extends StatelessWidget {
         centerTitle: false,
         surfaceTintColor: Colors.transparent,
       ),
-      body: const SingleChildScrollView(
+      body: SingleChildScrollView(
         child: Column(
           children: [
             SourceCard(
               sourceName: 'BBC News',
               sourceImgUrl:
                   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZrRNR9_sMkmiN5g2UN_f9kKx8H4Z9JDC5Pg&s',
-              imageUrl:
-                  'https://ichef.bbci.co.uk/news/1024/cpsprodpb/d513/live/baa96ca0-58c2-11ef-9126-9ff3f32adbcf.jpg.webp',
-              relativeTime: '3 Weeks Ago',
-              headline:
-                  'Yunus: I will help make students\' dream for Bangladesh come true',
-            ),
-            SizedBox(
-              height: 20,
+              sourceNews: sourcesNewsForBBC,
             ),
             SourceCard(
               sourceName: 'Al Jazeera',
               sourceImgUrl:
                   'https://play-lh.googleusercontent.com/1pvYY4tIk0u0ZPkqp-zMRHXekDNq793b5TNxFO0ZUMe2ML87G6moZrvfiVWFWteEUirC',
-              imageUrl:
-                  'https://www.aljazeera.com/wp-content/uploads/2024/07/2024-07-22T092620Z_1398568677_RC2609A1WMCR_RTRMADP_3_BANGLADESH-PROTESTS-1721641766.jpg?w=770&resize=770%2C513&quality=80',
-              relativeTime: '3 Weeks Ago',
-              headline:
-                  'Bangladesh protesters issue demands amid shaky calm',
+              sourceNews: sourcesNewsForAlJazeera,
+            ),
+            SourceCard(
+              sourceName: 'CNN',
+              sourceImgUrl:
+                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgT-R52bE5nFi11FvXv3Er0ADTmXuBd3ieeQ&s',
+              sourceNews: sourcesNewsForCNN,
+            ),
+            SourceCard(
+              sourceName: 'Fox News',
+              sourceImgUrl:
+                  'https://kreafolk.com/cdn/shop/articles/fox-news-logo-design-history-and-evolution-kreafolk_03495064-605c-4de7-aeea-1b60300fbf6f.jpg?v=1717724993&width=2048',
+              sourceNews: sourcesNewsForFoxNews,
+            ),
+            SourceCard(
+              sourceName: 'HuffPost',
+              sourceImgUrl:
+                  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVDeSZ7qfzm8LOVJx23MgOgXwNzKirAmQjeA&s',
+              sourceNews: sourcesNewsForHuffPost,
             ),
           ],
         ),
