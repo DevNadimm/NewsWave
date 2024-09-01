@@ -36,7 +36,6 @@ class TrendingCategories extends StatelessWidget {
                   context,
                   CupertinoPageRoute(
                     builder: (_) => CategoryScreen(
-                      imgPath: category['imagePath'],
                       title: category['name'],
                     ),
                   ),

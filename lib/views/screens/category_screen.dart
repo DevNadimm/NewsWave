@@ -4,9 +4,8 @@ import 'package:news_wave/models/news_model.dart';
 import 'package:news_wave/views/widgets/news_tile.dart';
 
 class CategoryScreen extends StatefulWidget {
-  const CategoryScreen({super.key, required this.imgPath, required this.title});
+  const CategoryScreen({super.key, required this.title});
 
-  final String imgPath;
   final String title;
 
   @override
@@ -33,6 +32,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
       body: SingleChildScrollView(
         child: NewsTile(
           futureNews: categoryNews,
+          isContainerColorVisible: false,
         ),
       ),
     );

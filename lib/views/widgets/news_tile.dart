@@ -6,11 +6,13 @@ class NewsTile extends StatelessWidget {
   const NewsTile({
     super.key,
     required this.futureNews,
+    required this.isContainerColorVisible,
     this.itemCount,
   });
 
   final Future<NewsModel> futureNews;
   final int? itemCount;
+  final bool isContainerColorVisible;
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +50,9 @@ class NewsTile extends StatelessWidget {
                 margin: const EdgeInsets.all(10),
                 padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
-                  color: secondaryColor,
+                  color: isContainerColorVisible
+                      ? secondaryColor
+                      : Colors.transparent,
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Row(
