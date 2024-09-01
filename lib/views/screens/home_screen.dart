@@ -59,7 +59,8 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             _buildHeadingRow(context, "News For You", () {}),
             NewsTile(
-              newsForYou: newsForYou,
+              itemCount: 10,
+              futureNews: newsForYou,
             ),
           ],
         ),

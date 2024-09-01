@@ -5,19 +5,21 @@ import 'package:news_wave/models/news_model.dart';
 class NewsTile extends StatelessWidget {
   const NewsTile({
     super.key,
-    required this.newsForYou,
+    required this.futureNews,
+    this.itemCount,
   });
 
-  final Future<NewsModel> newsForYou;
+  final Future<NewsModel> futureNews;
+  final int? itemCount;
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: newsForYou,
+      future: futureNews,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(
-            child: CircularProgressIndicator(),
+            child: Center(child: CircularProgressIndicator()),
           );
         } else if (snapshot.hasError) {
           return Center(
@@ -30,7 +32,7 @@ class NewsTile extends StatelessWidget {
           return ListView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
-            itemCount: 10,
+            itemCount: itemCount ?? newsList.length,
             itemBuilder: (context, index) {
               final article = newsList[index];
               final imageUrl = article.urlToImage ??

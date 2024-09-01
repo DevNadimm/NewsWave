@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:news_wave/models/cat_model.dart';
+import 'package:news_wave/views/screens/category_screen.dart';
 
 class TrendingCategories extends StatelessWidget {
   const TrendingCategories({super.key});
@@ -28,34 +30,47 @@ class TrendingCategories extends StatelessWidget {
             String key = categoryMap.keys.elementAt(index);
             Map<String, dynamic> category = categoryMap[key];
 
-            return Stack(
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    image: DecorationImage(
-                      image: AssetImage(category['imagePath']),
-                      fit: BoxFit.cover,
+            return GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  CupertinoPageRoute(
+                    builder: (_) => CategoryScreen(
+                      imgPath: category['imagePath'],
+                      title: category['name'],
                     ),
                   ),
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                    color: Colors.black.withOpacity(0.5),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.center,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      category['name'],
-                      style: Theme.of(context).textTheme.titleMedium,
+                );
+              },
+              child: Stack(
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      image: DecorationImage(
+                        image: AssetImage(category['imagePath']),
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
-                ),
-              ],
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.black.withOpacity(0.5),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.center,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        category['name'],
+                        style: Theme.of(context).textTheme.titleMedium,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             );
           },
         ),
