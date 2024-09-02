@@ -32,7 +32,7 @@ class _DetailsNewsScreenState extends State<DetailsNewsScreen> {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text(
-              'Oops, failed to load the article. The URL might be invalid or no app is configured to handle it.',
+              'Oops, failed to load the article.',
               style: TextStyle(fontWeight: FontWeight.w500),
             ),
             backgroundColor: Colors.red,
