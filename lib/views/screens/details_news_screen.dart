@@ -24,14 +24,27 @@ class _DetailsNewsScreenState extends State<DetailsNewsScreen> {
 
   void _launchURL(String url) async {
     final Uri uri = Uri.parse(url);
-    if (await canLaunchUrl(uri)) {
-      await launchUrl(uri);
-    } else {
+
+    try {
+      if (await canLaunchUrl(uri)) {
+        await launchUrl(uri);
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text(
+              'Oops, failed to load the article. The URL might be invalid or no app is configured to handle it.',
+              style: TextStyle(fontWeight: FontWeight.w500),
+            ),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
+        SnackBar(
           content: Text(
-            'Oops, failed to load the article.',
-            style: TextStyle(fontWeight: FontWeight.w500),
+            'Oops, an error occurred while trying to open the URL: $e',
+            style: const TextStyle(fontWeight: FontWeight.w500),
           ),
           backgroundColor: Colors.red,
         ),
@@ -134,7 +147,8 @@ class _DetailsNewsScreenState extends State<DetailsNewsScreen> {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(10),
                   child: Image.network(
-                    widget.article.urlToImage?? "https://i.ibb.co/nwgFFQf/20240901-180827.jpg",
+                    widget.article.urlToImage ??
+                        "https://i.ibb.co/nwgFFQf/20240901-180827.jpg",
                   ),
                 ),
                 const SizedBox(
