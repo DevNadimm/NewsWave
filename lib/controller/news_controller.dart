@@ -10,7 +10,7 @@ class NewsController {
     final formattedDate = _formatDate(oneWeekAgo);
 
     final url =
-        "https://newsapi.org/v2/everything?q=trending&from=$formattedDate&sortBy=publishedAt&apiKey=$apiKey";
+        "https://newsapi.org/v2/everything?q=trending&from=$formattedDate&sortBy=publishedAt&language=en&apiKey=$apiKey";
 
     try {
       final response = await http.get(Uri.parse(url));
