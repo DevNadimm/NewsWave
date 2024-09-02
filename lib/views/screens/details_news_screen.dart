@@ -114,20 +114,36 @@ class _DetailsNewsScreenState extends State<DetailsNewsScreen> {
                     widget.article.urlToImage.toString(),
                   ),
                 ),
-                const SizedBox(height: 10,),
+                const SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  "Description",
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleMedium
+                      ?.copyWith(fontSize: 16),
+                ),
                 Text(
                   widget.article.description.toString(),
                   style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                    fontSize: 14,
-                    color: textColor.withOpacity(0.9),
-                  ),
-                ),
-                Text(
-                  widget.article.content.toString(),
-                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
                         fontSize: 14,
+                        fontWeight: FontWeight.w400,
                         color: textColor.withOpacity(0.9),
                       ),
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                InkWell(
+                  onTap: () {},
+                  child: Text(
+                    "Read Full Article",
+                    style: TextStyle(
+                      color: Theme.of(context).primaryColor,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 )
               ],
             ),
