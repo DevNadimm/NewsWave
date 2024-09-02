@@ -147,6 +147,8 @@ class _DetailsNewsScreenState extends State<DetailsNewsScreen> {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(10),
                   child: Image.network(
+                    width: double.infinity,
+                    fit: BoxFit.cover,
                     widget.article.urlToImage ??
                         "https://i.ibb.co/nwgFFQf/20240901-180827.jpg",
                   ),
