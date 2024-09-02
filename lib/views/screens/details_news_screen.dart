@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:news_wave/colors.dart';
 import 'package:news_wave/models/news_model.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class DetailsNewsScreen extends StatefulWidget {
   const DetailsNewsScreen({super.key, required this.article});
@@ -21,6 +22,23 @@ class _DetailsNewsScreenState extends State<DetailsNewsScreen> {
     });
   }
 
+  void _launchURL(String url) async {
+    final Uri uri = Uri.parse(url);
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri);
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text(
+            'Oops, failed to load the article.',
+            style: TextStyle(fontWeight: FontWeight.w500),
+          ),
+          backgroundColor: Colors.red,
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return AnimatedSwitcher(
@@ -31,6 +49,11 @@ class _DetailsNewsScreenState extends State<DetailsNewsScreen> {
       child: Scaffold(
         key: ValueKey<bool>(isBookmarked),
         appBar: AppBar(
+          title: Image.asset(
+            "assets/logo/news_wave_title.png",
+            width: 150,
+          ),
+          centerTitle: true,
           actions: [
             IconButton(
               onPressed: _toggleBookmark,
@@ -111,7 +134,7 @@ class _DetailsNewsScreenState extends State<DetailsNewsScreen> {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(10),
                   child: Image.network(
-                    widget.article.urlToImage.toString(),
+                    widget.article.urlToImage?? "https://i.ibb.co/nwgFFQf/20240901-180827.jpg",
                   ),
                 ),
                 const SizedBox(
@@ -135,8 +158,12 @@ class _DetailsNewsScreenState extends State<DetailsNewsScreen> {
                 const SizedBox(
                   height: 15,
                 ),
-                InkWell(
-                  onTap: () {},
+                GestureDetector(
+                  onTap: () {
+                    _launchURL(
+                      widget.article.url,
+                    );
+                  },
                   child: Text(
                     "Read Full Article",
                     style: TextStyle(
