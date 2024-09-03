@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:news_wave/colors.dart';
 import 'package:news_wave/models/news_model.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:news_wave/views/screens/webview_article.dart';
 
 class DetailsNewsScreen extends StatefulWidget {
   const DetailsNewsScreen({super.key, required this.article});
@@ -20,36 +20,6 @@ class _DetailsNewsScreenState extends State<DetailsNewsScreen> {
     setState(() {
       isBookmarked = !isBookmarked;
     });
-  }
-
-  void _launchURL(String url) async {
-    final Uri uri = Uri.parse(url);
-
-    try {
-      if (await canLaunchUrl(uri)) {
-        await launchUrl(uri);
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text(
-              'Oops, failed to load the article.',
-              style: TextStyle(fontWeight: FontWeight.w500),
-            ),
-            backgroundColor: Colors.red,
-          ),
-        );
-      }
-    } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            'Oops, an error occurred while trying to open the URL: $e',
-            style: const TextStyle(fontWeight: FontWeight.w500),
-          ),
-          backgroundColor: Colors.red,
-        ),
-      );
-    }
   }
 
   @override
@@ -87,10 +57,9 @@ class _DetailsNewsScreenState extends State<DetailsNewsScreen> {
               children: [
                 Text(
                   widget.article.title,
-                  style: Theme.of(context)
-                      .textTheme
-                      .titleMedium
-                      ?.copyWith(fontSize: 16),
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        fontSize: 16,
+                      ),
                 ),
                 const SizedBox(
                   height: 7,
@@ -98,39 +67,46 @@ class _DetailsNewsScreenState extends State<DetailsNewsScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Row(
-                      children: [
-                        CircleAvatar(
-                          radius: 10,
-                          backgroundColor: accentColor,
-                          child: Center(
-                            child: Text(
-                              widget.article.author.isEmpty
-                                  ? "U"
-                                  : widget.article.author[0],
-                              style: const TextStyle(
+                    Expanded(
+                      child: Row(
+                        children: [
+                          CircleAvatar(
+                            radius: 10,
+                            backgroundColor: accentColor,
+                            child: Center(
+                              child: Text(
+                                widget.article.author.isEmpty
+                                    ? "U"
+                                    : widget.article.author[0],
+                                style: const TextStyle(
                                   color: bgColor,
                                   fontSize: 14,
-                                  fontWeight: FontWeight.bold),
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
                             ),
                           ),
-                        ),
-                        const SizedBox(
-                          width: 7,
-                        ),
-                        Text(
-                          widget.article.author.isEmpty
-                              ? "Unknown"
-                              : widget.article.author,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style:
-                              Theme.of(context).textTheme.titleSmall?.copyWith(
+                          const SizedBox(
+                            width: 7,
+                          ),
+                          Expanded(
+                            child: Text(
+                              widget.article.author.isEmpty
+                                  ? "Unknown"
+                                  : widget.article.author,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleSmall
+                                  ?.copyWith(
                                     fontSize: 14,
                                     color: textColor.withOpacity(0.9),
                                   ),
-                        ),
-                      ],
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                     const SizedBox(width: 8),
                     Text(
@@ -176,8 +152,13 @@ class _DetailsNewsScreenState extends State<DetailsNewsScreen> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    _launchURL(
-                      widget.article.url,
+                    Navigator.push(
+                      context,
+                      CupertinoPageRoute(
+                        builder: (_) => WebviewArticle(
+                          articleUrl: widget.article.url,
+                        ),
+                      ),
                     );
                   },
                   child: Text(

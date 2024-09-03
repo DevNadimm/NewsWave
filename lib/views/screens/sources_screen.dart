@@ -36,6 +36,38 @@ class _SourcesScreenState extends State<SourcesScreen> {
           "assets/logo/news_wave_title.png",
           width: 150,
         ),
+        actions: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(6),
+            child: Stack(
+              children: [
+                SizedBox(
+                  height: 27,
+                  width: 27,
+                  child: Image.asset('assets/images/avatar.jpg'),
+                ),
+                Positioned(
+                  bottom: 0,
+                  right: 0,
+                  child: Container(
+                    height: 12,
+                    width: 12,
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.black54,
+                    ),
+                    child: const Icon(
+                      Icons.menu_open_rounded,
+                      size: 10,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(width: 15),
+        ],
         centerTitle: false,
         surfaceTintColor: Colors.transparent,
       ),

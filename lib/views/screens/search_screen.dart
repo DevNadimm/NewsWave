@@ -4,7 +4,9 @@ import 'package:news_wave/colors.dart';
 import 'package:news_wave/views/widgets/trending_categories.dart';
 
 class SearchScreen extends StatelessWidget {
-  const SearchScreen({super.key});
+  const SearchScreen({super.key, this.isCenterTitle = false});
+
+  final bool isCenterTitle;
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +16,7 @@ class SearchScreen extends StatelessWidget {
           "assets/logo/news_wave_title.png",
           width: 150,
         ),
-        centerTitle: false,
+        centerTitle: isCenterTitle,
         surfaceTintColor: Colors.transparent,
       ),
       body: SafeArea(
