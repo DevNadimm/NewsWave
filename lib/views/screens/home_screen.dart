@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:news_wave/colors.dart';
 import 'package:news_wave/controller/news_controller.dart';
 import 'package:news_wave/models/news_model.dart';
+import 'package:news_wave/views/screens/profile_screen.dart';
 import 'package:news_wave/views/screens/search_screen.dart';
 import 'package:news_wave/views/screens/see_more_screen.dart';
 import 'package:news_wave/views/widgets/news_tile.dart';
@@ -52,33 +53,43 @@ class _HomeScreenState extends State<HomeScreen> {
               size: 20,
             ),
           ),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(6),
-            child: Stack(
-              children: [
-                SizedBox(
-                  height: 27,
-                  width: 27,
-                  child: Image.asset('assets/images/avatar.jpg'),
+          InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                CupertinoPageRoute(
+                  builder: (_) => const ProfileScreen(),
                 ),
-                Positioned(
-                  bottom: 0,
-                  right: 0,
-                  child: Container(
-                    height: 12,
-                    width: 12,
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.black54,
-                    ),
-                    child: const Icon(
-                    Icons.menu_open_rounded,
-                      size: 10,
-                      color: Colors.white,
+              );
+            },
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(6),
+              child: Stack(
+                children: [
+                  SizedBox(
+                    height: 27,
+                    width: 27,
+                    child: Image.asset('assets/images/avatar.jpg'),
+                  ),
+                  Positioned(
+                    bottom: 0,
+                    right: 0,
+                    child: Container(
+                      height: 12,
+                      width: 12,
+                      decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.black54,
+                      ),
+                      child: const Icon(
+                        Icons.menu_open_rounded,
+                        size: 10,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
           const SizedBox(width: 15),

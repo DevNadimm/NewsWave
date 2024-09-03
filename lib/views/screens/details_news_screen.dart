@@ -36,6 +36,7 @@ class _DetailsNewsScreenState extends State<DetailsNewsScreen> {
             "assets/logo/news_wave_title.png",
             width: 150,
           ),
+          surfaceTintColor: Colors.transparent,
           centerTitle: true,
           actions: [
             IconButton(
