@@ -39,6 +39,7 @@ class _BookmarkScreenState extends State<BookmarkScreen> {
               )
             : RefreshIndicator(
                 onRefresh: _refreshBookmarks,
+                backgroundColor: bgColor,
                 child: ListView.separated(
                   itemCount: Bookmark.bookmarkArticle.length,
                   itemBuilder: (context, index) {
