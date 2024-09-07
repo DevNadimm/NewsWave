@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:news_wave/colors.dart';
+import 'package:news_wave/utils/colors.dart';
 import 'package:news_wave/views/widgets/trending_categories.dart';
 
 class SearchScreen extends StatelessWidget {

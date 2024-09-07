@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:news_wave/colors.dart';
+import 'package:news_wave/utils/colors.dart';
 
 ThemeData appTheme() {
   return ThemeData(

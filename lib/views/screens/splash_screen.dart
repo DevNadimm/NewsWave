@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:news_wave/colors.dart';
+import 'package:news_wave/utils/colors.dart';
 import 'package:news_wave/views/widgets/bottom_nav_bar.dart';
 
 class SplashScreen extends StatelessWidget {

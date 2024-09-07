@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:news_wave/theme.dart';
+import 'package:news_wave/utils/theme.dart';
 import 'package:news_wave/views/screens/splash_screen.dart';
 
 void main() {

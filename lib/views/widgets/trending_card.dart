@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:news_wave/colors.dart';
+import 'package:news_wave/utils/colors.dart';
 import 'package:news_wave/models/news_model.dart';
 import 'package:news_wave/views/screens/details_news_screen.dart';
 
