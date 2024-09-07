@@ -22,7 +22,6 @@ class SeeMoreScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: NewsTile(
           futureNews: futureNews,
-          isContainerColorVisible: false,
         ),
       ),
     );

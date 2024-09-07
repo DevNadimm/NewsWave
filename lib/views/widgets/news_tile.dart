@@ -8,13 +8,11 @@ class NewsTile extends StatelessWidget {
   const NewsTile({
     super.key,
     required this.futureNews,
-    required this.isContainerColorVisible,
     this.itemCount,
   });
 
   final Future<NewsModel> futureNews;
   final int? itemCount;
-  final bool isContainerColorVisible;
 
   @override
   Widget build(BuildContext context) {
@@ -102,9 +100,10 @@ class NewsTile extends StatelessWidget {
                                     child: Text(
                                       authorInitial,
                                       style: const TextStyle(
-                                          color: bgColor,
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.bold),
+                                        color: bgColor,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
                                   ),
                                   const SizedBox(
@@ -115,8 +114,9 @@ class NewsTile extends StatelessWidget {
                                       maxLines: 1,
                                       overflow: TextOverflow.ellipsis,
                                       authorName,
-                                      style:
-                                          Theme.of(context).textTheme.titleSmall,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleSmall,
                                     ),
                                   )
                                 ],

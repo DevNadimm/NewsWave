@@ -158,7 +158,6 @@ class _HomeScreenState extends State<HomeScreen> {
             NewsTile(
               itemCount: 10,
               futureNews: newsForYou,
-              isContainerColorVisible: true,
             ),
           ],
         ),

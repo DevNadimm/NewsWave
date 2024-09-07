@@ -35,7 +35,6 @@ class _CategoryScreenState extends State<CategoryScreen> {
       body: SingleChildScrollView(
         child: NewsTile(
           futureNews: categoryNews,
-          isContainerColorVisible: false,
         ),
       ),
     );
