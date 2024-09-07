@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:news_wave/colors.dart';
+import 'package:news_wave/utils/colors.dart';
 import 'package:news_wave/models/news_model.dart';
 import 'package:news_wave/views/screens/details_news_screen.dart';
 
@@ -33,107 +33,113 @@ class NewsTile extends StatelessWidget {
           return const Center(child: Text('No news available.'));
         } else {
           final newsList = snapshot.data!.articles;
-          return ListView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: itemCount ?? newsList.length,
-            itemBuilder: (context, index) {
-              final article = newsList[index];
-              final imageUrl = article.urlToImage ??
-                  'https://i.ibb.co/nwgFFQf/20240901-180827.jpg';
-              final headline = article.title;
-              final authorName =
-                  article.author.isNotEmpty ? article.author : 'Unknown';
-              final authorInitial =
-                  article.author.isNotEmpty ? article.author[0] : "U";
-              final formattedDate = _formatDate(article.publishedAt);
+          return Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: ListView.separated(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: itemCount ?? newsList.length,
+              itemBuilder: (context, index) {
+                final article = newsList[index];
+                final imageUrl = article.urlToImage ??
+                    'https://i.ibb.co/nwgFFQf/20240901-180827.jpg';
+                final headline = article.title;
+                final authorName =
+                    article.author.isNotEmpty ? article.author : 'Unknown';
+                final authorInitial =
+                    article.author.isNotEmpty ? article.author[0] : "U";
+                final formattedDate = _formatDate(article.publishedAt);
 
-              return GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    CupertinoPageRoute(
-                      builder: (_) => DetailsNewsScreen(
-                        article: article,
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      CupertinoPageRoute(
+                        builder: (_) => DetailsNewsScreen(
+                          article: article,
+                        ),
                       ),
+                    );
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      color: secondaryColor,
+                      borderRadius: BorderRadius.circular(12),
                     ),
-                  );
-                },
-                child: Container(
-                  margin: const EdgeInsets.all(10),
-                  padding: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    color: isContainerColorVisible
-                        ? secondaryColor
-                        : Colors.transparent,
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        height: 120,
-                        width: 120,
-                        decoration: BoxDecoration(
-                          color: bgColor,
-                          borderRadius: BorderRadius.circular(12),
-                          image: DecorationImage(
-                            image: NetworkImage(imageUrl),
-                            fit: BoxFit.cover,
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          height: 120,
+                          width: 120,
+                          decoration: BoxDecoration(
+                            color: bgColor,
+                            borderRadius: BorderRadius.circular(12),
+                            image: DecorationImage(
+                              image: NetworkImage(imageUrl),
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
-                      ),
-                      const SizedBox(width: 10),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              headline,
-                              style: Theme.of(context).textTheme.titleMedium,
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                            const SizedBox(height: 8),
-                            Row(
-                              children: [
-                                CircleAvatar(
-                                  radius: 10,
-                                  backgroundColor: accentColor,
-                                  child: Text(
-                                    authorInitial,
-                                    style: const TextStyle(
-                                        color: bgColor,
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold),
+                        const SizedBox(width: 10),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                headline,
+                                style: Theme.of(context).textTheme.titleMedium,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              const SizedBox(height: 8),
+                              Row(
+                                children: [
+                                  CircleAvatar(
+                                    radius: 10,
+                                    backgroundColor: accentColor,
+                                    child: Text(
+                                      authorInitial,
+                                      style: const TextStyle(
+                                          color: bgColor,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.bold),
+                                    ),
                                   ),
-                                ),
-                                const SizedBox(
-                                  width: 8,
-                                ),
-                                Expanded(
-                                  child: Text(
-                                    maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
-                                    authorName,
-                                    style: Theme.of(context).textTheme.titleSmall,
+                                  const SizedBox(
+                                    width: 8,
                                   ),
-                                )
-                              ],
-                            ),
-                            const SizedBox(height: 8),
-                            Text(
-                              formattedDate,
-                              style: Theme.of(context).textTheme.bodyMedium,
-                            ),
-                          ],
+                                  Expanded(
+                                    child: Text(
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                      authorName,
+                                      style:
+                                          Theme.of(context).textTheme.titleSmall,
+                                    ),
+                                  )
+                                ],
+                              ),
+                              const SizedBox(height: 8),
+                              Text(
+                                formattedDate,
+                                style: Theme.of(context).textTheme.bodyMedium,
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-              );
-            },
+                );
+              },
+              separatorBuilder: (BuildContext context, int index) {
+                return const SizedBox(
+                  height: 10,
+                );
+              },
+            ),
           );
         }
       },

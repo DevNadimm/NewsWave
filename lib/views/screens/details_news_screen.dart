@@ -1,24 +1,41 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:news_wave/colors.dart';
+import 'package:news_wave/utils/bookmark.dart';
+import 'package:news_wave/utils/colors.dart';
 import 'package:news_wave/models/news_model.dart';
 import 'package:news_wave/views/screens/webview_article.dart';
 
 class DetailsNewsScreen extends StatefulWidget {
-  const DetailsNewsScreen({super.key, required this.article});
+  const DetailsNewsScreen({
+    super.key,
+    required this.article,
+    this.isBookmarked = false,
+  });
 
   final Article article;
+  final bool isBookmarked;
 
   @override
   _DetailsNewsScreenState createState() => _DetailsNewsScreenState();
 }
 
 class _DetailsNewsScreenState extends State<DetailsNewsScreen> {
-  bool isBookmarked = false;
+  late bool _isBookmarked;
+
+  @override
+  void initState() {
+    super.initState();
+    _isBookmarked = widget.isBookmarked;
+  }
 
   void _toggleBookmark() {
     setState(() {
-      isBookmarked = !isBookmarked;
+      if (!_isBookmarked) {
+        Bookmark.bookmarkArticle.add(widget.article);
+      } else {
+        Bookmark.bookmarkArticle.remove(widget.article);
+      }
+      _isBookmarked = !_isBookmarked;
     });
   }
 
@@ -30,7 +47,7 @@ class _DetailsNewsScreenState extends State<DetailsNewsScreen> {
         return FadeTransition(opacity: animation, child: child);
       },
       child: Scaffold(
-        key: ValueKey<bool>(isBookmarked),
+        key: ValueKey<bool>(_isBookmarked),
         appBar: AppBar(
           title: Image.asset(
             "assets/logo/news_wave_title.png",
@@ -42,7 +59,7 @@ class _DetailsNewsScreenState extends State<DetailsNewsScreen> {
             IconButton(
               onPressed: _toggleBookmark,
               icon: Icon(
-                isBookmarked
+                _isBookmarked
                     ? CupertinoIcons.bookmark_fill
                     : CupertinoIcons.bookmark,
                 size: 20,
@@ -62,9 +79,7 @@ class _DetailsNewsScreenState extends State<DetailsNewsScreen> {
                         fontSize: 16,
                       ),
                 ),
-                const SizedBox(
-                  height: 7,
-                ),
+                const SizedBox(height: 7),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -87,9 +102,7 @@ class _DetailsNewsScreenState extends State<DetailsNewsScreen> {
                               ),
                             ),
                           ),
-                          const SizedBox(
-                            width: 7,
-                          ),
+                          const SizedBox(width: 7),
                           Expanded(
                             child: Text(
                               widget.article.author.isEmpty
@@ -118,21 +131,17 @@ class _DetailsNewsScreenState extends State<DetailsNewsScreen> {
                     ),
                   ],
                 ),
-                const SizedBox(
-                  height: 10,
-                ),
+                const SizedBox(height: 10),
                 ClipRRect(
                   borderRadius: BorderRadius.circular(10),
                   child: Image.network(
-                    width: double.infinity,
-                    fit: BoxFit.cover,
                     widget.article.urlToImage ??
                         "https://i.ibb.co/nwgFFQf/20240901-180827.jpg",
+                    width: double.infinity,
+                    fit: BoxFit.cover,
                   ),
                 ),
-                const SizedBox(
-                  height: 10,
-                ),
+                const SizedBox(height: 10),
                 Text(
                   "Description",
                   style: Theme.of(context)
@@ -141,16 +150,14 @@ class _DetailsNewsScreenState extends State<DetailsNewsScreen> {
                       ?.copyWith(fontSize: 16),
                 ),
                 Text(
-                  widget.article.description.toString(),
+                  widget.article.description ?? '',
                   style: Theme.of(context).textTheme.titleSmall?.copyWith(
                         fontSize: 14,
                         fontWeight: FontWeight.w400,
                         color: textColor.withOpacity(0.9),
                       ),
                 ),
-                const SizedBox(
-                  height: 15,
-                ),
+                const SizedBox(height: 15),
                 GestureDetector(
                   onTap: () {
                     Navigator.push(
