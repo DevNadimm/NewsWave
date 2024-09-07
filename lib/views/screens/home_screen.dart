@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:news_wave/colors.dart';
+import 'package:news_wave/utils/colors.dart';
 import 'package:news_wave/controller/news_controller.dart';
 import 'package:news_wave/models/news_model.dart';
+import 'package:news_wave/views/screens/bookmark_screen.dart';
 import 'package:news_wave/views/screens/profile_screen.dart';
-import 'package:news_wave/views/screens/search_screen.dart';
 import 'package:news_wave/views/screens/see_more_screen.dart';
 import 'package:news_wave/views/widgets/news_tile.dart';
 import 'package:news_wave/views/widgets/trending_card.dart';
@@ -42,14 +42,13 @@ class _HomeScreenState extends State<HomeScreen> {
               Navigator.push(
                 context,
                 CupertinoPageRoute(
-                  builder: (_) => const SearchScreen(
-                    isCenterTitle: true,
+                  builder: (_) => const BookmarkScreen(
                   ),
                 ),
               );
             },
             icon: const Icon(
-              CupertinoIcons.search,
+              CupertinoIcons.bookmark,
               size: 20,
             ),
           ),
