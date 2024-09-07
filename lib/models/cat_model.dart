@@ -39,4 +39,12 @@ Map<String, dynamic> categoryMap = {
     'name': 'Politics',
     'imagePath': 'assets/images/politics.jpg',
   },
+  'education': {
+    'name': 'Education',
+    'imagePath': 'assets/images/education.jpg',
+  },
+  'lifestyle': {
+    'name': 'Lifestyle',
+    'imagePath': 'assets/images/lifestyle.jpg',
+  },
 };
