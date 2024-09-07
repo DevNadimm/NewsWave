@@ -25,6 +25,8 @@ class TrendingCard extends StatelessWidget {
 
           return ListView.builder(
             scrollDirection: Axis.horizontal,
+            physics: const NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
             itemCount: 10,
             itemBuilder: (context, index) {
               final article = newsList[index];
@@ -50,7 +52,7 @@ class TrendingCard extends StatelessWidget {
                   );
                 },
                 child: Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 10),
+                  margin: const EdgeInsets.only(right: 10),
                   padding: const EdgeInsets.all(10),
                   width: 280,
                   decoration: BoxDecoration(

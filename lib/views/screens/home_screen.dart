@@ -42,8 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Navigator.push(
                 context,
                 CupertinoPageRoute(
-                  builder: (_) => const BookmarkScreen(
-                  ),
+                  builder: (_) => const BookmarkScreen(),
                 ),
               );
             },
@@ -121,9 +120,19 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 10,
             ),
             SizedBox(
-              height: 330,
-              child: TrendingCard(
-                trendingNews: trendingNews,
+              height: 327,
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    TrendingCard(
+                      trendingNews: trendingNews,
+                    ),
+                  ],
+                ),
               ),
             ),
             Padding(
