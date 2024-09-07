@@ -20,12 +20,23 @@ class _HomeScreenState extends State<HomeScreen> {
   final NewsController newsController = NewsController();
   late final Future<NewsModel> trendingNews;
   late final Future<NewsModel> newsForYou;
+  bool isLoading = true;
 
   @override
   void initState() {
+    super.initState();
+    fetchNewsData();
+  }
+
+  void fetchNewsData() {
     trendingNews = newsController.getTrendingNews();
     newsForYou = newsController.getNewsForYou();
-    super.initState();
+
+    Future.wait([trendingNews, newsForYou]).then((_) {
+      setState(() {
+        isLoading = false;
+      });
+    });
   }
 
   @override
@@ -36,133 +47,133 @@ class _HomeScreenState extends State<HomeScreen> {
           "assets/logo/news_wave_title.png",
           width: 150,
         ),
-        actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                CupertinoPageRoute(
-                  builder: (_) => const BookmarkScreen(),
-                ),
-              );
-            },
-            icon: const Icon(
-              CupertinoIcons.bookmark,
-              size: 20,
-            ),
-          ),
-          InkWell(
-            onTap: () {
-              Navigator.push(
-                context,
-                CupertinoPageRoute(
-                  builder: (_) => const ProfileScreen(),
-                ),
-              );
-            },
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(6),
-              child: Stack(
+        actions: _buildAppBarActions(context),
+        centerTitle: false,
+        surfaceTintColor: Colors.transparent,
+      ),
+      body: isLoading
+          ? const Center(
+              child: CircularProgressIndicator(),
+            )
+          : SingleChildScrollView(
+              child: Column(
                 children: [
-                  SizedBox(
-                    height: 27,
-                    width: 27,
-                    child: Image.asset('assets/images/avatar.jpg'),
+                  const SizedBox(height: 10),
+                  _buildHeadingRow(
+                    context,
+                    "Hottest News",
+                    () {
+                      Navigator.push(
+                        context,
+                        CupertinoPageRoute(
+                          builder: (_) => SeeMoreScreen(
+                            title: "Hottest News",
+                            futureNews: trendingNews,
+                          ),
+                        ),
+                      );
+                    },
                   ),
-                  Positioned(
-                    bottom: 0,
-                    right: 0,
-                    child: Container(
-                      height: 12,
-                      width: 12,
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.black54,
-                      ),
-                      child: const Icon(
-                        Icons.menu_open_rounded,
-                        size: 10,
-                        color: Colors.white,
+                  const SizedBox(height: 10),
+                  SizedBox(
+                    height: 327,
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: [
+                          const SizedBox(width: 10),
+                          TrendingCard(trendingNews: trendingNews),
+                        ],
                       ),
                     ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        left: 10, right: 10, top: 15, bottom: 5),
+                    child: Image.asset('assets/logo/barrier.png'),
+                  ),
+                  _buildHeadingRow(
+                    context,
+                    "News For You",
+                    () {
+                      Navigator.push(
+                        context,
+                        CupertinoPageRoute(
+                          builder: (_) => SeeMoreScreen(
+                            title: "News For You",
+                            futureNews: newsForYou,
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                  NewsTile(
+                    itemCount: 10,
+                    futureNews: newsForYou,
                   ),
                 ],
               ),
             ),
-          ),
-          const SizedBox(width: 15),
-        ],
-        centerTitle: false,
-        surfaceTintColor: Colors.transparent,
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            const SizedBox(
-              height: 10,
+    );
+  }
+
+  List<Widget> _buildAppBarActions(BuildContext context) {
+    return [
+      IconButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            CupertinoPageRoute(
+              builder: (_) => const BookmarkScreen(),
             ),
-            _buildHeadingRow(
-              context,
-              "Hottest News",
-              () {
-                Navigator.push(
-                  context,
-                  CupertinoPageRoute(
-                    builder: (_) => SeeMoreScreen(
-                      title: "Hottest News",
-                      futureNews: trendingNews,
-                    ),
-                  ),
-                );
-              },
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            SizedBox(
-              height: 327,
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    TrendingCard(
-                      trendingNews: trendingNews,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(
-                  left: 10, right: 10, top: 15, bottom: 5),
-              child: Image.asset('assets/logo/barrier.png'),
-            ),
-            _buildHeadingRow(
-              context,
-              "News For You",
-              () {
-                Navigator.push(
-                  context,
-                  CupertinoPageRoute(
-                    builder: (_) => SeeMoreScreen(
-                      title: "News For You",
-                      futureNews: newsForYou,
-                    ),
-                  ),
-                );
-              },
-            ),
-            NewsTile(
-              itemCount: 10,
-              futureNews: newsForYou,
-            ),
-          ],
+          );
+        },
+        icon: const Icon(
+          CupertinoIcons.bookmark,
+          size: 20,
         ),
       ),
-    );
+      InkWell(
+        onTap: () {
+          Navigator.push(
+            context,
+            CupertinoPageRoute(
+              builder: (_) => const ProfileScreen(),
+            ),
+          );
+        },
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(6),
+          child: Stack(
+            children: [
+              SizedBox(
+                height: 27,
+                width: 27,
+                child: Image.asset('assets/images/avatar.jpg'),
+              ),
+              Positioned(
+                bottom: 0,
+                right: 0,
+                child: Container(
+                  height: 12,
+                  width: 12,
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.black54,
+                  ),
+                  child: const Icon(
+                    Icons.menu_open_rounded,
+                    size: 10,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+      const SizedBox(width: 15),
+    ];
   }
 
   Widget _buildHeadingRow(
