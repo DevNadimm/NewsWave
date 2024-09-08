@@ -91,6 +91,24 @@ class NewsController {
     }
   }
 
+  Future<NewsModel> getSearchNews(String query) async {
+    final url =
+        "https://newsapi.org/v2/everything?q=$query&sortBy=popularity&language=en&apiKey=$apiKey";
+    try {
+      final response = await http.get(Uri.parse(url));
+      if (response.statusCode == 200) {
+        final jsonResponse = jsonDecode(response.body);
+        final news = NewsModel.fromJson(jsonResponse);
+        return news;
+      } else {
+        throw Exception(
+            "Failed to load news for '$query'. Status code: ${response.statusCode}");
+      }
+    } catch (e) {
+      throw Exception("An error occurred while fetching news for '$query': $e");
+    }
+  }
+
   String _formatDate(DateTime date) {
     return "${date.year}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}";
   }
