@@ -17,7 +17,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
 
   final List<Widget> _screens = [
     const HomeScreen(),
-    SearchScreen(),
+    const SearchScreen(),
     const SourcesScreen(),
   ];
 
