@@ -59,74 +59,97 @@ class SourceCard extends StatelessWidget {
               const SizedBox(height: 10),
               SizedBox(
                 height: 300,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: 15,
-                  itemBuilder: (context, index) {
-                    final article = newsList[index];
-                    final imgUrl = article.urlToImage ??
-                        "https://i.ibb.co/nwgFFQf/20240901-180827.jpg";
-                    final headline = article.title;
-                    final formattedDate = _formatDate(article.publishedAt);
-
-                    return GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          CupertinoPageRoute(
-                            builder: (_) => DetailsNewsScreen(
-                              article: article,
-                            ),
-                          ),
-                        );
-                      },
-                      child: Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 10),
-                        padding: const EdgeInsets.all(10),
-                        width: 280,
-                        decoration: BoxDecoration(
-                          color: secondaryColor,
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              height: 180,
-                              decoration: BoxDecoration(
-                                color: bgColor,
-                                borderRadius: BorderRadius.circular(12),
-                                image: DecorationImage(
-                                  image: NetworkImage(imgUrl),
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                            const SizedBox(height: 10),
-                            Text(
-                              formattedDate,
-                              style: Theme.of(context).textTheme.bodyMedium,
-                            ),
-                            const SizedBox(height: 7),
-                            Text(
-                              headline,
-                              style: Theme.of(context).textTheme.titleMedium,
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ],
-                        ),
-                      ),
-                    );
-                  },
-                ),
+                child: _buildNewsCarousel(newsList),
               ),
               const SizedBox(height: 25),
             ],
           );
         }
       },
+    );
+  }
+
+  Widget _buildNewsCarousel(List<Article> newsList) {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: [
+          const SizedBox(
+            width: 10,
+          ),
+          ListView.separated(
+            shrinkWrap: true,
+            scrollDirection: Axis.horizontal,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: 15,
+            itemBuilder: (context, index) {
+              final article = newsList[index];
+              final imgUrl = article.urlToImage ??
+                  "https://i.ibb.co/nwgFFQf/20240901-180827.jpg";
+              final headline = article.title;
+              final formattedDate = _formatDate(article.publishedAt);
+
+              return GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    CupertinoPageRoute(
+                      builder: (_) => DetailsNewsScreen(
+                        article: article,
+                      ),
+                    ),
+                  );
+                },
+                child: Container(
+                  padding: const EdgeInsets.all(10),
+                  width: 280,
+                  decoration: BoxDecoration(
+                    color: secondaryColor,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        height: 180,
+                        decoration: BoxDecoration(
+                          color: bgColor,
+                          borderRadius: BorderRadius.circular(12),
+                          image: DecorationImage(
+                            image: NetworkImage(imgUrl),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Text(
+                        formattedDate,
+                        style: Theme.of(context).textTheme.bodyMedium,
+                      ),
+                      const SizedBox(height: 7),
+                      Text(
+                        headline,
+                        style: Theme.of(context).textTheme.titleMedium,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            },
+            separatorBuilder: (BuildContext context, int index) {
+              return const SizedBox(
+                width: 10,
+              );
+            },
+          ),
+          const SizedBox(
+            width: 10,
+          ),
+        ],
+      ),
     );
   }
 
