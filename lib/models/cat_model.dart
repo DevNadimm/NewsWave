@@ -14,13 +14,13 @@ Map<String, dynamic> categoryMap = {
     'name': 'Business',
     'icon': Icons.money_rounded,
   },
-  'sports': {
-    'name': 'Sports',
-    'icon': Icons.sports_baseball_rounded,
-  },
   'entertainment': {
     'name': 'Entertainment',
     'icon': Icons.music_note_rounded,
+  },
+  'sports': {
+    'name': 'Sports',
+    'icon': Icons.sports_baseball_rounded,
   },
   'health': {
     'name': 'Health',
@@ -38,10 +38,6 @@ Map<String, dynamic> categoryMap = {
     'name': 'Food',
     'icon': Icons.local_pizza_rounded,
   },
-  'politics': {
-    'name': 'Politics',
-    'icon': Icons.newspaper_rounded,
-  },
   'education': {
     'name': 'Education',
     'icon': Icons.school_rounded,
@@ -49,5 +45,9 @@ Map<String, dynamic> categoryMap = {
   'lifestyle': {
     'name': 'Lifestyle',
     'icon': CupertinoIcons.person_fill,
+  },
+  'politics': {
+    'name': 'Politics',
+    'icon': Icons.newspaper_rounded,
   },
 };
