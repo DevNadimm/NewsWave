@@ -1,50 +1,53 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
 Map<String, dynamic> categoryMap = {
   'world': {
     'name': 'World News',
-    'imagePath': 'assets/images/world_news.jpg',
+    'icon': Icons.public_rounded,
   },
   'technology': {
     'name': 'Technology',
-    'imagePath': 'assets/images/technology.jpg',
+    'icon': Icons.memory_rounded,
   },
   'business': {
     'name': 'Business',
-    'imagePath': 'assets/images/business.jpg',
+    'icon': Icons.money_rounded,
   },
   'sports': {
     'name': 'Sports',
-    'imagePath': 'assets/images/sports.jpg',
+    'icon': Icons.sports_baseball_rounded,
   },
   'entertainment': {
     'name': 'Entertainment',
-    'imagePath': 'assets/images/entertainment.jpg',
+    'icon': Icons.music_note_rounded,
   },
   'health': {
     'name': 'Health',
-    'imagePath': 'assets/images/health.jpg',
+    'icon': CupertinoIcons.suit_heart_fill,
   },
   'science': {
     'name': 'Science',
-    'imagePath': 'assets/images/science.jpg',
+    'icon': Icons.science_rounded,
   },
   'travel': {
     'name': 'Travel',
-    'imagePath': 'assets/images/travel.jpg',
+    'icon': CupertinoIcons.airplane,
   },
   'food': {
     'name': 'Food',
-    'imagePath': 'assets/images/food.jpg',
+    'icon': Icons.local_pizza_rounded,
   },
   'politics': {
     'name': 'Politics',
-    'imagePath': 'assets/images/politics.jpg',
+    'icon': Icons.newspaper_rounded,
   },
   'education': {
     'name': 'Education',
-    'imagePath': 'assets/images/education.jpg',
+    'icon': Icons.school_rounded,
   },
   'lifestyle': {
     'name': 'Lifestyle',
-    'imagePath': 'assets/images/lifestyle.jpg',
+    'icon': CupertinoIcons.person_fill,
   },
 };

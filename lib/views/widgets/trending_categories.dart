@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:news_wave/models/cat_model.dart';
+import 'package:news_wave/utils/colors.dart';
 import 'package:news_wave/views/screens/category_screen.dart';
 
 class TrendingCategories extends StatelessWidget {
@@ -22,7 +23,7 @@ class TrendingCategories extends StatelessWidget {
           itemCount: categoryMap.length,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
-            childAspectRatio: 2,
+            childAspectRatio: 2.6,
             crossAxisSpacing: 10,
             mainAxisSpacing: 10,
           ),
@@ -41,34 +42,22 @@ class TrendingCategories extends StatelessWidget {
                   ),
                 );
               },
-              child: Stack(
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
-                      image: DecorationImage(
-                        image: AssetImage(category['imagePath']),
-                        fit: BoxFit.cover,
-                      ),
+              child: Container(
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: secondaryColor,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      category['name'],
+                      style: Theme.of(context).textTheme.titleSmall,
                     ),
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                      color: Colors.black.withOpacity(0.5),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.center,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        category['name'],
-                        style: Theme.of(context).textTheme.titleMedium,
-                      ),
-                    ),
-                  ),
-                ],
+                    Icon(category['icon'], color: subTextColor)
+                  ],
+                ),
               ),
             );
           },
