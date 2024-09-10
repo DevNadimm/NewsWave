@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:news_wave/controller/news_controller.dart';
 import 'package:news_wave/models/news_model.dart';
+import 'package:news_wave/views/screens/loading_news_tile.dart';
 import 'package:news_wave/views/widgets/news_tile.dart';
 
 class CategoryScreen extends StatefulWidget {
@@ -13,13 +14,24 @@ class CategoryScreen extends StatefulWidget {
 }
 
 class _CategoryScreenState extends State<CategoryScreen> {
-  late Future<NewsModel> categoryNews;
-  NewsController newsController = NewsController();
+  late final Future<NewsModel> categoryNews;
+  final NewsController newsController = NewsController();
+  bool isLoading = true;
 
   @override
   void initState() {
-    categoryNews = newsController.getCategoryNews(widget.title);
     super.initState();
+    fetchNewsData();
+  }
+
+  void fetchNewsData() {
+    categoryNews = newsController.getCategoryNews(widget.title);
+
+    Future.wait([categoryNews]).then((_) {
+      setState(() {
+        isLoading = false;
+      });
+    });
   }
 
   @override
@@ -32,11 +44,13 @@ class _CategoryScreenState extends State<CategoryScreen> {
         ),
         surfaceTintColor: Colors.transparent,
       ),
-      body: SingleChildScrollView(
-        child: NewsTile(
-          futureNews: categoryNews,
-        ),
-      ),
+      body: isLoading
+          ? const LoadingNewsTile()
+          : SingleChildScrollView(
+              child: NewsTile(
+                futureNews: categoryNews,
+              ),
+            ),
     );
   }
 }
