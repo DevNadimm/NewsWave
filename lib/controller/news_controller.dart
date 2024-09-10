@@ -3,7 +3,7 @@ import 'package:news_wave/models/news_model.dart';
 import 'package:http/http.dart' as http;
 
 class NewsController {
-  final apiKey = "beb03bbb96e64abc8aa61ff7c809454f";
+  final apiKey = "8fa80a02433c44ba9c0aa206d7e21a64";
 
   Future<NewsModel> getTrendingNews() async {
     final oneWeekAgo = DateTime.now().subtract(const Duration(days: 7));

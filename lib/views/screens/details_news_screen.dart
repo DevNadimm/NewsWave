@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:news_wave/utils/bookmark.dart';
 import 'package:news_wave/utils/colors.dart';
 import 'package:news_wave/models/news_model.dart';
@@ -37,6 +38,28 @@ class _DetailsNewsScreenState extends State<DetailsNewsScreen> {
       }
       _isBookmarked = !_isBookmarked;
     });
+
+    if (_isBookmarked) {
+      Fluttertoast.showToast(
+        msg: "Article added to bookmarks",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: secondaryColor,
+        textColor: textColor,
+        fontSize: 16.0,
+      );
+    } else {
+      Fluttertoast.showToast(
+        msg: "Article removed from bookmarks",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0,
+      );
+    }
   }
 
   @override
