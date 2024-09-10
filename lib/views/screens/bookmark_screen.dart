@@ -34,7 +34,7 @@ class _BookmarkScreenState extends State<BookmarkScreen> {
             ? Center(
                 child: Text(
                   "No bookmarks available!",
-                  style: Theme.of(context).textTheme.titleSmall,
+                  style: Theme.of(context).textTheme.bodyMedium,
                 ),
               )
             : RefreshIndicator(

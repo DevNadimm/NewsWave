@@ -28,7 +28,12 @@ class NewsTile extends StatelessWidget {
             child: Text('Error: ${snapshot.error}'),
           );
         } else if (!snapshot.hasData || snapshot.data!.articles.isEmpty) {
-          return const Center(child: Text('No news available.'));
+          return Center(
+            child: Text(
+              'No news available.',
+              style: Theme.of(context).textTheme.bodyMedium,
+            ),
+          );
         } else {
           final newsList = snapshot.data!.articles;
           return Padding(

@@ -52,7 +52,7 @@ class _SearchScreenState extends State<SearchScreen> {
                     ? Center(
                         child: Text(
                           "No search initiated.",
-                          style: Theme.of(context).textTheme.titleSmall,
+                          style: Theme.of(context).textTheme.bodyMedium,
                         ),
                       )
                     : NewsTile(
