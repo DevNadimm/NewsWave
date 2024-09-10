@@ -60,6 +60,7 @@ class TrendingCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
@@ -73,7 +74,6 @@ class TrendingCard extends StatelessWidget {
                           ),
                         ),
                       ),
-                      const SizedBox(height: 10),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -87,14 +87,12 @@ class TrendingCard extends StatelessWidget {
                           ),
                         ],
                       ),
-                      const SizedBox(height: 10),
                       Text(
                         headline,
                         style: Theme.of(context).textTheme.titleMedium,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                       ),
-                      const SizedBox(height: 10),
                       Row(
                         children: [
                           CircleAvatar(

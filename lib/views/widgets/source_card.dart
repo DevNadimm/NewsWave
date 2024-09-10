@@ -122,12 +122,10 @@ class SourceCard extends StatelessWidget {
                           ),
                         ),
                       ),
-                      const SizedBox(height: 10),
                       Text(
                         formattedDate,
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
-                      const SizedBox(height: 7),
                       Text(
                         headline,
                         style: Theme.of(context).textTheme.titleMedium,
