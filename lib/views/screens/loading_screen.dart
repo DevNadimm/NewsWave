@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:news_wave/shimmer/loading_container.dart';
+import 'package:news_wave/utils/loading_container.dart';
 import 'package:news_wave/utils/colors.dart';
 
 class LoadingScreen extends StatelessWidget {
