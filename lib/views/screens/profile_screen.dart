@@ -36,10 +36,6 @@ class ProfileScreen extends StatelessWidget {
                       "User Name",
                       style: Theme.of(context).textTheme.titleLarge,
                     ),
-                    Text(
-                      "Developer",
-                      style: Theme.of(context).textTheme.bodyLarge,
-                    ),
                   ],
                 ),
               ),
