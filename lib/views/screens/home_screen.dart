@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:news_wave/views/screens/loading_screen.dart';
+import 'package:news_wave/views/screens/loading_home_screen.dart';
 import 'package:news_wave/utils/colors.dart';
 import 'package:news_wave/controller/news_controller.dart';
 import 'package:news_wave/models/news_model.dart';
@@ -53,7 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
         surfaceTintColor: Colors.transparent,
       ),
       body: isLoading
-          ? const LoadingScreen()
+          ? const LoadingHomeScreen()
           : SingleChildScrollView(
               child: Column(
                 children: [

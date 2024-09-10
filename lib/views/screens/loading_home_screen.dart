@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:news_wave/views/widgets/loading_container.dart';
 import 'package:news_wave/utils/colors.dart';
 
-class LoadingScreen extends StatelessWidget {
-  const LoadingScreen({super.key});
+class LoadingHomeScreen extends StatelessWidget {
+  const LoadingHomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.sizeOf(context).width;
 
-    // Reusable BoxDecoration
     final BoxDecoration commonDecoration = BoxDecoration(
       color: secondaryColor,
       borderRadius: BorderRadius.circular(12),
