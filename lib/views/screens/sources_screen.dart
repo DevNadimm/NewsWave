@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:news_wave/controller/news_controller.dart';
 import 'package:news_wave/models/news_model.dart';
+import 'package:news_wave/views/screens/loading_sources_screen.dart';
 import 'package:news_wave/views/screens/profile_screen.dart';
 import 'package:news_wave/views/widgets/source_card.dart';
 
@@ -101,9 +102,7 @@ class _SourcesScreenState extends State<SourcesScreen> {
         surfaceTintColor: Colors.transparent,
       ),
       body: isLoading
-          ? const Center(
-              child: CircularProgressIndicator(),
-            )
+          ? const LoadingSourcesScreen()
           : SingleChildScrollView(
               child: Column(
                 children: [
