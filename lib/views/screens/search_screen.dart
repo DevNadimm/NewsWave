@@ -49,8 +49,15 @@ class _SearchScreenState extends State<SearchScreen> {
             searchController.text.isEmpty
                 ? const TrendingCategories()
                 : searchResult == null
-                ? const Center(child: Text("No search initiated."))
-                : NewsTile(futureNews: searchResult!),
+                    ? Center(
+                        child: Text(
+                          "No search initiated.",
+                          style: Theme.of(context).textTheme.titleSmall,
+                        ),
+                      )
+                    : NewsTile(
+                        futureNews: searchResult!,
+                      ),
           ],
         ),
       ),
