@@ -21,7 +21,6 @@ Explore news from reputable sources including:
 - CNN
 - Fox News
 - HuffPost
-- And more...
 
 ### 🔖 Bookmark Screen
 - **Bookmark Articles**: Save your favorite news articles for quick access.
