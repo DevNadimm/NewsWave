@@ -31,7 +31,7 @@ Explore news from reputable sources including:
 - **Visit Source**: Each post includes a link that allows the user to visit the original news post on the web.
 
 ### 👤 Profile Screen
-- **User Interface**: Manage your profile settings and preferences.
+- **User Interface**: This is a UI-only screen designed to enhance the app’s visual appeal. It doesn't include functionality for managing profile settings.
 
 ### 🥤 Toast Notifications
 - Receive quick feedback and alerts within the app for various actions.
