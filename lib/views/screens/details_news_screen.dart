@@ -4,7 +4,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:news_wave/utils/bookmark.dart';
 import 'package:news_wave/utils/colors.dart';
 import 'package:news_wave/models/news_model.dart';
-import 'package:news_wave/views/screens/webview_article.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class DetailsNewsScreen extends StatefulWidget {
   const DetailsNewsScreen({
@@ -182,15 +182,8 @@ class _DetailsNewsScreenState extends State<DetailsNewsScreen> {
                 ),
                 const SizedBox(height: 15),
                 GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      CupertinoPageRoute(
-                        builder: (_) => WebviewArticle(
-                          articleUrl: widget.article.url,
-                        ),
-                      ),
-                    );
+                  onTap: () async {
+                    await launchUrl(Uri.parse(widget.article.url));
                   },
                   child: Text(
                     "Read Full Article",
